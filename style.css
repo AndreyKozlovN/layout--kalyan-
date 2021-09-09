@@ -1,0 +1,211 @@
+*{
+    margin: 0;
+    padding: 0;
+    /* убрали отступ по умолчанию у элементов */
+    box-sizing: border-box;
+    /* при позиционировании будет считать размер элемента, с учетом его отсутпов внутри и рамки (иначе при ширине 33% он добавит + padding + border и не влезет */
+}
+
+body {
+    color: #212121;
+    font: 400 14px/1 'Inconsolata', monospace;;
+    /* Цвет всего текста и параметры для шрифта в документе (общего, для определенных элементов будет указан непосредственно в них
+    (400 - жирность - regular) (14px/1 размера шрифта/высота строки(равна размеру шрифта) (основной шрифт 'Inconsolata') (Если такого нет, любой непропорц. шрифт)*/
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    /* Ссылка будет наследовать цвет от родителя(inherit) Убрали подчеркивание ссылки(none) */
+}
+
+ul {
+    list-style: none;
+    /* убираем кружок(точку) у элемента списка */
+}
+
+img {
+    max-width: 100%;
+}
+
+
+
+/* Default classes start */
+/* Классы которые будем применять несколько раз к разным элементам, что бы не дублировать код (вспомогательные) */
+.d-flex {
+    display: flex;
+}
+.justify-content-between {
+    justify-content: space-between;
+    /* распределяет все элементы по ширине flex-блока (один в начале (слева) - последний в конце (справа)) */
+}
+.justify-content-center {
+    justify-content: center;
+    /* расположит элементы по центру (флекс элемента) */
+}
+.flex-column {
+    flex-direction: column;
+    /* сделает из элементов внутри флека элемента колонны (столбцы) */
+}
+.align-items-center {
+    align-items: center;
+    /* Выровнять логотип и навигацию по одной горизонтальной линии (общая центральная линия) */
+}
+.flex-wrap {
+    flex-wrap: wrap;
+    /* элементы будут перестраиваться (подстроятся под нужную ширину 33%) */
+}
+.text-center {
+    text-align: center;
+}
+.text-right {
+    text-align: right;
+}
+.text-uppercase {
+    text-transform: uppercase;
+}
+/* Default classes end */
+
+
+.container {
+    max-width: 1170px;
+    margin: auto;
+    padding: 0 15px;
+    /* 1170 - максимальная ширина(для основной части, указана в макете), что бы элемент не тянулся на всю ширину экрана
+     (margin: auto) - расположит элемент по середине шапки (блочные элем-ты при наличии ширины (max или фиксиров.) центруются по середине)
+      отступы для того, что при сужении экрана контент не прилипал к краям экрана */
+}
+
+.standart-section {
+    padding: 70px 0;
+}
+
+.section-title {
+    font-weight: 900;
+    font-size: 30px;
+    margin-bottom: 65px;
+}
+
+.col-4 {
+    width: 33.3333%;
+    padding: 0 15px;
+    /* для адаптивности, при растягивании и сужении наши карточки будут тянуться вместе с экраном / окном браузера + отступ между колонками */
+}
+
+.row {
+    margin: 0 -15px;
+    /* компенсируем паддинги колонок и выровняем контент в одну линию вертикальную */
+}
+
+.btn {
+    display: inline-block;
+    padding: 16px 60px;
+    font-size: 14px;
+    font: 400 14px/1 'Inconsolata', monospace;;
+    border-radius: 50px;
+    border: 3px solid transparent;
+    /* по умолчанию у кнопки будет прозрачная рамка */
+    cursor: pointer;
+    color: #212121;
+}
+
+.btn.btn-default {
+    /* обращение к элементу с двумя классами происходит без пробела между классами (.div.div-div) */
+    background-color: #ff7f50;
+    border-color: #ff7f50;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+}
+
+.btn.btn-default:hover {
+    background-color: #fff;
+}
+
+#header {
+    padding: 20px 0;
+    border-bottom: 3px solid rgb(141, 33, 190);
+    background-color: #fff;
+    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.5);
+    /* Отступ контента от краев для шапки / Рамка снизу (визуальная граница) / белый цвет фона, во избежании просвета других элементов 
+    box-shadow даст тень (сдвиг по оси X , по оси Y, размытие тени, цвет rgba('a' - насколько наш цвет будет непрозрачным)*/
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    /* для статичной шапки сайта */
+}
+
+.header-nav {
+    font-size: 16px;
+    font-weight: 700;
+    /* Добавим стили к навигации (размер шрифта и его жирность), не указываем к каждой ссылке, т.к. стили шрифта наследуются */
+}
+
+.header-nav a {
+    text-transform: capitalize;
+    /* Приведем все (слова) в ссылках в блоке навигации к первому символу в верхнем регистре (во избежании возможной неудобной ситуации) */
+}
+
+.header-nav a + a {
+    margin-left: 20px;
+    /* Всем ссылкам 'a' внутри `{этого}` класса добавим внешний отступ слева (что бы ссылки не были в одной куче)
+    но т.к. первой ссылке отступ слева не нужен, использ. 'a + a' (все элементы кроме первого получат данные стили) */
+}
+
+.header-nav a:hover {
+    color:rgb(141, 33, 190);
+    /* у всех ссылок внутри блока с таким классом при наведении будет цвет как у нашей рамки */
+}
+
+#main {
+    padding-top: 92px;
+    /* так как шапка статичная, она не учитывается в общем потоке, поэтому установим отступ равный ее размеру */
+}
+
+.card-item {
+    background-color: #fff;
+    box-shadow: 0 13px 27px rgba(141, 33, 190, 0.3);
+    padding: 20px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.card-item .card-img {
+    display: block;
+    margin-bottom: 20px;
+    /* т.к. ссылка строчный элемент(по умолчанию занимает место только для контента, внутри нее нах-ся картинка которая  формирует ширину этой ссылки)
+    , установим 'disp: block' , для того что бы выровнять элемент внутри нее (с добавлением text-center) */
+}
+
+.card-item .card-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.card-item .card-price {
+    font-size: 20px;
+    font-weight: 400;
+    color: rgb(141, 33, 190);
+}
+
+.card-item .card-sale {
+    width: 90px;
+    height: 90px;
+    background-color: #ff7f50;
+    font-size: 15px;
+    border-radius: 50%;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+    position: absolute;
+    right: 20px;
+    top: -50px
+}
+
+.about-us-text {
+    font-size: 18px;
+    line-height: 1.3;
+    /* Междустрочное расстояние будет равно 130% от font-size */
+    max-width: 800px;
+    margin: auto;
+    margin-bottom: 60px;
+}
